@@ -5,13 +5,16 @@
  */
 
 buildscript {
+    ext.dashboard_version = '0.4.12'
+    ext.checkstyle_version = '8.18'
+
     repositories {
         mavenCentral()
         google()
     }
     dependencies {
         // Note for FTC Teams: Do not modify this yourself.
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:7.3.1'
     }
 }
 

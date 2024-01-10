@@ -4,6 +4,7 @@ import static org.firstinspires.ftc.teamcode.Utils.EasyPrecision.precision;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Robot.Hardware;
 import org.firstinspires.ftc.teamcode.Utils.Pose;
 import org.firstinspires.ftc.teamcode.Utils.Vector;
 
+@Disabled
 @TeleOp(name="kStatic calibration")
 public class kStaticCalibration extends LinearOpMode {
 

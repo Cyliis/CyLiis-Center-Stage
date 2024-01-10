@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.teamcode.Modules;
 
 import static java.lang.Math.PI;
-import static java.lang.Math.max;
-
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.canvas.GPose;
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.PIDCoefficients;
 
@@ -90,8 +85,6 @@ public class Follower implements IRobotModule {
 
         Pose currentPose = localizer.getPoseEstimate();
 
-        trail.add(currentPose.getGPose());
-
         Pose predictedPose = localizer.getPredictedPoseEstimate();
 
         currentFollowedPoint = trajectory.getFollowedPoint(currentPose, currentFollowedPoint);
@@ -135,7 +128,5 @@ public class Follower implements IRobotModule {
         drive.setTargetVector(driveVector);
         velocityProfile.update();
     }
-
-    public final ArrayList<GPose> trail = new ArrayList<>();
 
 }

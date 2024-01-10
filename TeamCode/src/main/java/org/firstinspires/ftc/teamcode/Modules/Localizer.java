@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Modules;
 
-import com.acmerobotics.dashboard.canvas.GPose;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.util.ElapsedTime;

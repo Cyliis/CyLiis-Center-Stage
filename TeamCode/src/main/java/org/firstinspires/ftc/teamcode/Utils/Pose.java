@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Utils;
 
-import com.acmerobotics.dashboard.canvas.GPose;
 import com.acmerobotics.dashboard.config.Config;
 
 @Config
@@ -54,9 +53,6 @@ public class Pose {
 
     public Pose plus(Pose other){
         return new Pose(x + other.x, y + other.y, heading + other.heading);
-    }
-    public GPose getGPose(){
-        return  new GPose(this.x,this.y,this.heading);
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Robot.Hardware;
 import org.firstinspires.ftc.teamcode.Utils.Pose;
 import org.firstinspires.ftc.teamcode.Utils.Vector;
 
-//@Disabled
+@Disabled
 @Config
 @TeleOp(name = "Localization Test Buru")
 public class LocalizationTest extends LinearOpMode {

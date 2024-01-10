@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.TrajectoryStuff;
 
-import com.acmerobotics.dashboard.canvas.GPose;
-
 import org.firstinspires.ftc.teamcode.Utils.Pose;
 import org.firstinspires.ftc.teamcode.Utils.Vector;
 
@@ -86,18 +84,6 @@ public class Trajectory {
 
         if (closestPoint == Double.POSITIVE_INFINITY) return currentFollowedPoint;
         return closestPoint;
-    }
-    public ArrayList<GPose> getGPoses() {
-        double start = 0,end=1;
-        final double eps = 0.001;
-        ArrayList<GPose> ans = new ArrayList<>();
-        while (start + eps < end) {
-            ans.add(new GPose(
-                    getPose(start).getX(), getPose(start).getY(),getPose(start).getHeading()
-            ));
-            start += eps;
-        }
-        return ans;
     }
 
 }
