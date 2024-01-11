@@ -42,7 +42,7 @@ public class Hardware {
         this.hardwareMap = hm;
 
         for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
-            hub.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
 //        chub = hardwareMap.getAll(LynxModule.class).get(0).isParent() ?
@@ -104,9 +104,9 @@ public class Hardware {
     }
 
     public void update(){
-        for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
-            hub.clearBulkCache();
-        }
+//        for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
+//            hub.clearBulkCache();
+//        }
     }
 
 

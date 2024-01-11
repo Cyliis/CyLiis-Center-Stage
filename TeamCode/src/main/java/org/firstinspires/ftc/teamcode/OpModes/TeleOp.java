@@ -42,7 +42,7 @@ public class TeleOp extends LinearOpMode {
         gamepadControl = new BuruSebiGamepadControl(robotModules, gamepad1, gamepad2);
         driveTrainControl = new BuruDriveTrainControl(gamepad1, drive);
 
-        hardware.startThreads(this);
+        hardware.startThreads(this, drive.getLocalizer());
 
         while(opModeInInit() && !isStopRequested()){
             robotModules.initUpdate();

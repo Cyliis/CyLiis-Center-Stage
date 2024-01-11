@@ -44,7 +44,7 @@ public class BetterBlueFar extends LinearOpMode {
         drive = new MecanumDrive(hardware, hardware.localizer, MecanumDrive.RunMode.PID, false);
         robot = new RobotModules(hardware);
 
-        hardware.startThreads(this);
+        hardware.startThreads(this, drive.getLocalizer());
 
         processor = new PropDetectionBlueFar();
         portal = new VisionPortal.Builder()

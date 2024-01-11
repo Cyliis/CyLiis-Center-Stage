@@ -42,8 +42,6 @@ public class IntakeCalibration extends LinearOpMode {
         dash = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dash.getTelemetry());
 
-        hardware.startThreads(this);
-
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){

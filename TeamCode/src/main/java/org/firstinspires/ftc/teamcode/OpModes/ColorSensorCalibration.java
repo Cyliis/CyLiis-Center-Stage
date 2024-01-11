@@ -24,8 +24,6 @@ public class ColorSensorCalibration extends LinearOpMode {
         telemetry = new MultipleTelemetry(telemetry, dash.getTelemetry());
 
         hardware = new Hardware(hardwareMap);
-        
-        hardware.startThreads(this);
 
         waitForStart();
         

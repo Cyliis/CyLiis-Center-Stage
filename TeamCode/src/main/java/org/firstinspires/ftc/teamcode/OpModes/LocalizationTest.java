@@ -37,7 +37,7 @@ public class LocalizationTest extends LinearOpMode {
 
         drive = new MecanumDrive(hardware, hardware.localizer,false);
 
-        hardware.startThreads(this);
+        hardware.startThreads(this, drive.getLocalizer());
 
         waitForStart();
 
