@@ -29,7 +29,7 @@ public class LocalizationTest extends LinearOpMode {
 
         waitForStart();
 
-        hardware.startThreads(this);
+        hardware.startThreads(this, drive.getLocalizer());
 
         while (!isStopRequested()) {
             drive.setWeightedDrivePower(

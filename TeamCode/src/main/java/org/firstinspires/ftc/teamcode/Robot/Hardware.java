@@ -95,7 +95,11 @@ public class Hardware {
         localizer = new Localizer(this);
     }
 
-    public void startThreads(LinearOpMode opMode){
+    public void startThreads(LinearOpMode opMode, Localizer localizer){
+        imu.startIMUThread(opMode, localizer);
+    }
+
+    public void startThreads(LinearOpMode opMode, com.acmerobotics.roadrunner.localization.Localizer localizer){
         imu.startIMUThread(opMode, localizer);
     }
 

@@ -29,6 +29,26 @@ public class CoolIMU {
         imu.resetYaw();
     }
 
+    public void startIMUThread(LinearOpMode opMode, com.acmerobotics.roadrunner.localization.Localizer localizer) {
+        new Thread(() -> {
+            imu.resetYaw();
+            while ((opMode.opModeIsActive() && !opMode.isStopRequested()) || (opMode.opModeInInit() && !opMode.isStopRequested())) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (imuLock1) {
+                    imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+                    localizer.update();
+                }
+                synchronized (imuLock2){
+                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+                }
+            }
+        }).start();
+    }
+
     public void startIMUThread(LinearOpMode opMode, Localizer localizer) {
         new Thread(() -> {
             imu.resetYaw();
