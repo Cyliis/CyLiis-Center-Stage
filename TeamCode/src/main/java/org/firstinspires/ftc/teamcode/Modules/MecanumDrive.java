@@ -33,13 +33,13 @@ public class MecanumDrive implements IRobotModule {
 //            headingPID = new PIDCoefficients(1,0.04,0.004);
     public final PIDController tpid= new PIDController(0,0,0), hpid = new PIDController(0,0,0);
 
-    public static double lateralMultiplier = 1.4;
+    public static double lateralMultiplier = 1.1;
 
     public double overallMultiplier = 1;
 
     public double velocityThreshold = 0.5;
 
-    public static double ks = 0.055;
+    public static double ks = 0.035;
 
     private VoltageSensor voltageSensor;
     public static double voltage = 0;
