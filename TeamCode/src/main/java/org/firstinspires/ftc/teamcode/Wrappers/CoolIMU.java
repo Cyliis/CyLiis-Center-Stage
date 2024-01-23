@@ -12,7 +12,7 @@ public class CoolIMU {
 
     private final Object imuLock1 = new Object();
     private final Object imuLock2 = new Object();
-    private final IMU imu;
+    public final IMU imu;
     public static double imuAngle = 0;
     public static double imuVelocity = 0;
     public static double imuOffset = 0;
@@ -42,9 +42,9 @@ public class CoolIMU {
                     imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
                     localizer.update();
                 }
-                synchronized (imuLock2){
-                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
-                }
+//                synchronized (imuLock2){
+//                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                }
             }
         }).start();
     }
@@ -62,9 +62,68 @@ public class CoolIMU {
                     imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
                     localizer.update();
                 }
-                synchronized (imuLock2){
-                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                synchronized (imuLock2){
+//                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                }
+            }
+        }).start();
+    }
+
+    public void startIMUThread(LinearOpMode opMode, com.acmerobotics.roadrunner.localization.Localizer localizer, boolean useImu) {
+        new Thread(() -> {
+            if(useImu)imu.resetYaw();
+            while ((opMode.opModeIsActive() && !opMode.isStopRequested()) || (opMode.opModeInInit() && !opMode.isStopRequested())) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                synchronized (imuLock1) {
+                    if(useImu)imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+                    localizer.update();
+                }
+//                synchronized (imuLock2){
+//                    if(useImu)imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                }
+            }
+        }).start();
+    }
+
+    public void startIMUThread(LinearOpMode opMode, Localizer localizer, boolean useImu) {
+        new Thread(() -> {
+            if(useImu)imu.resetYaw();
+            while ((opMode.opModeIsActive() && !opMode.isStopRequested()) || (opMode.opModeInInit() && !opMode.isStopRequested())) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (imuLock1) {
+                    if(useImu)imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+                    localizer.update();
+                }
+//                synchronized (imuLock2){
+//                    if(useImu)imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                }
+            }
+        }).start();
+    }
+
+    public void startIMUThread(LinearOpMode opMode) {
+        new Thread(() -> {
+            imu.resetYaw();
+            while ((opMode.opModeIsActive() && !opMode.isStopRequested()) || (opMode.opModeInInit() && !opMode.isStopRequested())) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (imuLock1) {
+                    imuAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+                }
+//                synchronized (imuLock2){
+//                    imuVelocity = imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
+//                }
             }
         }).start();
     }

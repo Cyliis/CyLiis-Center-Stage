@@ -9,6 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+import org.firstinspires.ftc.teamcode.Math.AsymmetricMotionProfile;
 import org.firstinspires.ftc.teamcode.Robot.Hardware;
 import org.firstinspires.ftc.teamcode.Wrappers.CoolMotor;
 import org.firstinspires.ftc.teamcode.Robot.IRobotModule;
@@ -33,7 +36,7 @@ public class MecanumDrive implements IRobotModule {
 //            headingPID = new PIDCoefficients(1,0.04,0.004);
     public final PIDController tpid= new PIDController(0,0,0), hpid = new PIDController(0,0,0);
 
-    public static double lateralMultiplier = 1.1;
+    public static double lateralMultiplier = 1.4;
 
     public double overallMultiplier = 1;
 
@@ -119,9 +122,14 @@ public class MecanumDrive implements IRobotModule {
         return localizer.getPoseEstimate().getDistance(targetPose) <= tolerance;
     }
 
+    public double diff;
+
     public boolean reachedHeading(double tolerance){
         if(runMode == RunMode.Vector) return false;
-        return Math.abs((localizer.getHeading() - targetPose.getHeading())%(2*PI)) <= tolerance;
+        diff = targetPose.getHeading() - localizer.getHeading();
+        while(diff>Math.PI) diff -= Math.PI * 2.0;
+        while(diff<-Math.PI) diff += Math.PI * 2.0;
+        return Math.abs(diff) <= tolerance;
     }
 
     public boolean stopped(){
@@ -188,6 +196,13 @@ public class MecanumDrive implements IRobotModule {
 
         updatePowerVector();
         updateMotors();
+    }
+    
+    public void telemetry(Telemetry telemetry){
+        telemetry.addData("Front left current", frontLeft.motor.motor.getCurrent(CurrentUnit.AMPS));
+        telemetry.addData("Front right current", frontRight.motor.motor.getCurrent(CurrentUnit.AMPS));
+        telemetry.addData("Back left current", backLeft.motor.motor.getCurrent(CurrentUnit.AMPS));
+        telemetry.addData("Back right current", backRight.motor.motor.getCurrent(CurrentUnit.AMPS));
     }
 
     @Override

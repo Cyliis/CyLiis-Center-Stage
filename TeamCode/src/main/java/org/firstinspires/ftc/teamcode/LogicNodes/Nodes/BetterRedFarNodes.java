@@ -20,7 +20,7 @@ public class BetterRedFarNodes {
     public ElapsedTime autoTimer = new ElapsedTime();
     public double cycleTime = 8.5, returnTime = 6;
 
-    public double returnTimeRight = 5.5, returnTimeMiddle = 6, returnTimeLeft = 6;
+    public double returnTimeRight = 5.5, returnTimeMiddle = 6, returnTimeLeft = 6.3;
 
     public LogicNode currentNode = new LogicNode("Nothing");
 
@@ -68,13 +68,13 @@ public class BetterRedFarNodes {
 
     public Pose offset = new Pose();
 
-    public static double xIncrement = 1;
-    public static double xDriftIncrement = 0;
-    public static double yDriftIncrement = 0;
+    public static double xIncrement = 0;
+    public static double xDriftIncrement = 0.8;
+    public static double yDriftIncrement = 0.3;
 
-    private final Pose driftAfterRight = new Pose(0,1);
-    private final Pose driftAfterMiddle = new Pose(0, 0.5);
-    private final Pose driftAfterLeft = new Pose(0, 0.5);
+    private final Pose driftAfterRight = new Pose(0,0);
+    private final Pose driftAfterMiddle = new Pose(0, 0);
+    private final Pose driftAfterLeft = new Pose(0, 0);
     private Pose driftAfterPurple = new Pose();
 
     public static double timeToScore = 0.85, timeToIntake = 1.3, timeToReverse = 0.85;
@@ -82,8 +82,8 @@ public class BetterRedFarNodes {
 
     private int intakeTries = 0;
 
-    private final Pose purpleRightPose = new Pose(29, -3, -PI/2.0);
-    private final Pose purpleMiddlePose = new Pose(30, -2, -0.88);
+    private final Pose purpleRightPose = new Pose(27, -3, -PI/2.0);
+    private final Pose purpleMiddlePose = new Pose(30, -1, -0.88);
     private final Pose purpleLeftPose = new Pose(20, 2.5, 0);
 
     private Pose purplePose = new Pose();
@@ -94,9 +94,9 @@ public class BetterRedFarNodes {
 
     private Pose backUpPose = new Pose();
 
-    private final Pose lineUpForIntakePoseRight = new Pose(50,6,-PI/2.0);
-    private final Pose lineUpForIntakePoseMiddle = new Pose(49, 10, -PI/2.0);
-    private final Pose lineUpForIntakePoseLeft = new Pose(51.5, -5, -PI/2.0);
+    private final Pose lineUpForIntakePoseRight = new Pose(51,8,-PI/2.0);
+    private final Pose lineUpForIntakePoseMiddle = new Pose(51, 10, -PI/2.0);
+    private final Pose lineUpForIntakePoseLeft = new Pose(50.5, -3, -PI/2.0);
 
     private Pose lineUpForIntakePose = new Pose();
 
@@ -105,25 +105,27 @@ public class BetterRedFarNodes {
 //    private Pose intakePoseMiddle = new Pose(49,-20.5,1.56);
 //    private Pose intakePoseLeft = new Pose(49,-20.5,1.56);
 
-    private Pose intakePose = new Pose(51,19.5,-1.56);
+    private Pose intakePose = new Pose(50.5,20,-PI/2.0);
 
-    private final Pose crossFieldPose = new Pose(54,-69,-1.55);
+    private final Pose crossFieldPose = new Pose(52,-69,-PI/2.0);
 
-    private final Pose scoringPoseRightYellow = new Pose(19.5,-90.5,-1.55);
-    private final Pose scoringPoseMiddleYellow = new Pose(26,-90.5,-1.55);
-    private final Pose scoringPoseLeftYellow = new Pose(30,-90.5,-1.55);
+    private final Pose scoringPoseRightYellow = new Pose(20,-91,-PI/2.0);
+    private final Pose scoringPoseMiddleYellow = new Pose(26,-91,-PI/2.0);
+    private final Pose scoringPoseLeftYellow = new Pose(30,-91,-PI/2.0);
 
     private Pose scoringPoseYellow = new Pose();
 
-    private final Pose scoringPoseRight = new Pose(30,-91,-1.55);
-    private final Pose scoringPoseMiddle = new Pose(30,-91,-1.55);
-    private final Pose scoringPoseLeft = new Pose(29,-91,-1.55);
+    private final Pose scoringPoseRight = new Pose(27,-91,-PI/2.0);
+    private final Pose scoringPoseMiddle = new Pose(30,-91,-PI/2.0);
+    private final Pose scoringPoseLeft = new Pose(26,-91,-PI/2.0);
 
     private Pose scoringPose = new Pose();
 
-    private final Pose crossBackPose = new Pose(52.5,-69,-1.57);
+    private final Pose crossBackPose = new Pose(52,-69,-PI/2.0);
 
-    private final Pose parkPose = new Pose(25,-85,-PI/2.0);
+    private final Pose parkPose = new Pose(23,-85,-PI/2.0);
+
+    private final int resets = 0;
 
     public BetterRedFarNodes(MecanumDrive drive, RobotModules robot, int detectionCase){
         drive.setRunMode(MecanumDrive.RunMode.PID);
@@ -188,7 +190,7 @@ public class BetterRedFarNodes {
                     offset = offset.plus(driftAfterPurple);
                 }, turnForIntake);
 
-        turnForIntake.addCondition(()->drive.reachedHeading(0.1), ()->{
+        turnForIntake.addCondition(()->drive.reachedHeading(0.25), ()->{
             robot.intake.setState(Intake.State.START_INTAKE);
             if(cycles == 0) DropDown.index = 4;
             drive.setTargetPose(intakePose.plus(offset));

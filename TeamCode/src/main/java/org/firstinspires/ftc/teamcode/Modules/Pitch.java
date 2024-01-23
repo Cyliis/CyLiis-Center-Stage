@@ -16,7 +16,7 @@ public class Pitch implements IStateBasedModule, IRobotModule {
     private final CoolServo servo;
     public static boolean reversedServo = false;
 
-    public static double intakePosition = 0.64, outtakePosition = 0.28, purplePosition = 0.2;
+    public static double intakePosition = 0.64, outtakePosition = 0.25, purplePosition = 0.2;
 
     public static double profileMaxVelocity = 15, profileAcceleration = 8;
 

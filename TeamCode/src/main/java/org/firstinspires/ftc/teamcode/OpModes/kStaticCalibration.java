@@ -34,7 +34,7 @@ public class kStaticCalibration extends LinearOpMode {
 
         drive = new MecanumDrive(hardware, hardware.localizer,false);
 
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         waitForStart();
 

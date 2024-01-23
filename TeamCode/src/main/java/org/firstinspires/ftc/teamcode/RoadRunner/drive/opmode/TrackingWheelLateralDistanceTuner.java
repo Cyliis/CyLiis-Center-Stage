@@ -63,11 +63,11 @@ import org.firstinspires.ftc.teamcode.Robot.Hardware;
  * slightly but your heading will still be fine. This does not affect your overall tracking
  * precision. The heading should still line up.
  */
-@Disabled
+//@Disabled
 @Config
 @TeleOp(group = "drive")
 public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
-    public static int NUM_TURNS = 10;
+    public static int NUM_TURNS = 30;
 
     @Override
     public void runOpMode() throws InterruptedException {

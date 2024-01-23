@@ -35,7 +35,7 @@ public class CorrectionPIDTuning extends LinearOpMode {
 
         drive = new MecanumDrive(hardware, hardware.localizer, MecanumDrive.RunMode.PID, false);
 
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         waitForStart();
 

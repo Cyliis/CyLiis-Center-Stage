@@ -49,7 +49,7 @@ public class DecelerationTuner extends LinearOpMode {
         hardware = new Hardware(hardwareMap);
 
         drive = new MecanumDrive(hardware, hardware.localizer, false);
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         waitForStart();
 

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -42,7 +43,7 @@ public class Hardware {
         this.hardwareMap = hm;
 
         for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
-            hub.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
 //        chub = hardwareMap.getAll(LynxModule.class).get(0).isParent() ?
@@ -92,20 +93,20 @@ public class Hardware {
 
         imu = new CoolIMU(hm);
 
-        localizer = new Localizer(this);
+        localizer = new Localizer(this, Localizer.Type.TWO_WHEEL);
     }
 
-    public void startThreads(LinearOpMode opMode, Localizer localizer){
-        imu.startIMUThread(opMode, localizer);
+    public void startThreads(LinearOpMode opMode){
+        imu.startIMUThread(opMode, localizer, true);
     }
 
     public void startThreads(LinearOpMode opMode, com.acmerobotics.roadrunner.localization.Localizer localizer){
-        imu.startIMUThread(opMode, localizer);
+        imu.startIMUThread(opMode, localizer, true);
     }
 
     public void update(){
         for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
-            hub.clearBulkCache();
+//            hub.clearBulkCache();
         }
     }
 

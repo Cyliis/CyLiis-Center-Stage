@@ -42,7 +42,7 @@ public class TeleOp extends LinearOpMode {
         gamepadControl = new BuruSebiGamepadControl(robotModules, gamepad1, gamepad2);
         driveTrainControl = new BuruDriveTrainControl(gamepad1, drive);
 
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         while(opModeInInit() && !isStopRequested()){
             robotModules.initUpdate();
@@ -67,6 +67,7 @@ public class TeleOp extends LinearOpMode {
             robotModules.update();
 
             robotModules.telemetry(telemetry);
+//            drive.telemetry(telemetry);
 
             telemetry.addData("Imu angle", drive.getLocalizer().getHeading());
             telemetry.addData("Hz", 1.0/loopTimer.seconds());

@@ -16,7 +16,7 @@ public class Plane implements IStateBasedModule, IRobotModule {
     private final CoolServo servo;
     public static boolean reversedServo = true;
 
-    public static double openPosition = 0.82, closedPosition = 0.96;
+    public static double openPosition = 0.57, closedPosition = 0.69;
 
     public enum State{
         OPEN(openPosition), CLOSED(closedPosition);

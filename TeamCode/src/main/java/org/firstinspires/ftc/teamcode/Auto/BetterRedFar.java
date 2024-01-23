@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
+import static java.lang.Math.PI;
+
 import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
@@ -44,7 +46,7 @@ public class BetterRedFar extends LinearOpMode {
         drive = new MecanumDrive(hardware, hardware.localizer, MecanumDrive.RunMode.PID, false);
         robot = new RobotModules(hardware);
 
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         processor = new PropDetectionRedFar();
         portal = new VisionPortal.Builder()
@@ -92,13 +94,13 @@ public class BetterRedFar extends LinearOpMode {
             telemetry.addData("Current pose", hardware.localizer.getPoseEstimate());
             telemetry.addData("Target pose", drive.getTargetPose());
             telemetry.addData("Offset", nodes.offset);
+//            telemetry.addData("Diff", ((drive.getTargetPose().getHeading() - ((hardware.localizer.getHeading()%(2.0*PI) - Math.signum(hardware.localizer.getHeading()) * PI * 2.0) % (2.0* PI)) )%(2.0*PI)));
+//            telemetry.addData("profile", drive.profile.getPosition());
             robot.telemetry(telemetry);
 
             loopTimer.reset();
 
             telemetry.update();
         }
-
-        CoolIMU.imuOffset = -hardware.imu.getHeading();
     }
 }

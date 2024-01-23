@@ -37,7 +37,7 @@ public class LocalizationTest extends LinearOpMode {
 
         drive = new MecanumDrive(hardware, hardware.localizer,false);
 
-        hardware.startThreads(this, drive.getLocalizer());
+        hardware.startThreads(this);
 
         waitForStart();
 
@@ -64,8 +64,11 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("velocity", drive.getLocalizer().getVelocity());
             telemetry.addData("predicted glide X", drive.getLocalizer().glideDelta.getX());
             telemetry.addData("predicted glide Y", drive.getLocalizer().glideDelta.getY());
-            telemetry.addData("velocity X", drive.getLocalizer().localizer.getPoseVelocity().getX());
-            telemetry.addData("velocity Y", drive.getLocalizer().localizer.getPoseVelocity().getY());
+            telemetry.addData("ECH0", hardware.ech0.getCurrentPosition());
+            telemetry.addData("ECH2", hardware.ech2.getCurrentPosition());
+            telemetry.addData("ECH3", hardware.ech3.getCurrentPosition());
+//            telemetry.addData("velocity X", drive.getLocalizer().localizer.getPoseVelocity().getX());
+//            telemetry.addData("velocity Y", drive.getLocalizer().localizer.getPoseVelocity().getY());
             telemetry.update();
         }
     }
