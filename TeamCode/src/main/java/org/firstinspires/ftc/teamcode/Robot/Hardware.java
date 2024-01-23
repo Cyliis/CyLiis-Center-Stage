@@ -93,15 +93,11 @@ public class Hardware {
 
         imu = new CoolIMU(hm);
 
-        localizer = new Localizer(this, Localizer.Type.TWO_WHEEL);
+        localizer = new Localizer(this);
     }
 
     public void startThreads(LinearOpMode opMode){
-        imu.startIMUThread(opMode, localizer, true);
-    }
-
-    public void startThreads(LinearOpMode opMode, com.acmerobotics.roadrunner.localization.Localizer localizer){
-        imu.startIMUThread(opMode, localizer, true);
+        imu.startIMUThread(opMode, localizer);
     }
 
     public void update(){

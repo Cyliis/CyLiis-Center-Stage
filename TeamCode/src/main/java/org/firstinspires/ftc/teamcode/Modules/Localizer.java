@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode.Modules;
 
-import static org.firstinspires.ftc.teamcode.Modules.Localizer.Type.TWO_WHEEL;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Math.LowPassFilter;
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Robot.Hardware;
 import org.firstinspires.ftc.teamcode.Robot.IRobotModule;
 import org.firstinspires.ftc.teamcode.Utils.Pose;
@@ -26,25 +23,22 @@ public class Localizer implements IRobotModule {
     public com.acmerobotics.roadrunner.localization.Localizer localizer;
     public CoolIMU imu;
 
-    public enum Type{
-        TWO_WHEEL, THREE_WHEEL
-    }
-
-    public Localizer(Hardware hardware, Pose initialPose, Type type) {
+    public Localizer(Hardware hardware, Pose initialPose) {
         this.pose = initialPose;
         this.imu = hardware.imu;
-        this.localizer = type == TWO_WHEEL?new FunnyLocalizer(hardware):new StandardTrackingWheelLocalizer(hardware, new ArrayList<>(), new ArrayList<>());
+        this.localizer = new FunnyLocalizer(hardware);
         localizer.setPoseEstimate(new Pose2d(initialPose.getX(), initialPose.getY(), initialPose.getHeading()));
     }
 
-    public Localizer(Hardware hardware, Type type) {
+    public Localizer(Hardware hardware) {
         this.pose = new Pose();
         this.imu = hardware.imu;
-        this.localizer = type == TWO_WHEEL?new FunnyLocalizer(hardware):new StandardTrackingWheelLocalizer(hardware, new ArrayList<>(), new ArrayList<>());
+        this.localizer = new FunnyLocalizer(hardware);
         localizer.setPoseEstimate(new Pose2d());
     }
 
     public void setPose(Pose pose) {
+        localizer.setPoseEstimate(new Pose2d(pose.getX(), pose.getY(), pose.getHeading()));
         this.pose = pose;
     }
 
@@ -71,10 +65,6 @@ public class Localizer implements IRobotModule {
 
     public Vector getVelocity(){
         return velocity;
-    }
-
-    public void relocalizeAngle(){
-        localizer.setPoseEstimate(new Pose2d(pose.getX(), pose.getY(), imu.imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS)));
     }
 
     @Override
