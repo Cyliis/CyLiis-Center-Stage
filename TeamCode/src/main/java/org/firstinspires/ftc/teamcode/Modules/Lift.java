@@ -58,7 +58,7 @@ public class Lift implements IStateBasedModule, IRobotModule {
 
     public void setState(State newState){
         updateStateValues();
-        profile.setMotion(encoder.getCurrentPosition(), newState.position, profile.getSignedVelocity());
+        profile.setMotion(newState == State.DOWN?State.DOWN.position:encoder.getCurrentPosition(), newState.position, newState == State.DOWN?0:profile.getSignedVelocity());
         if(state == newState) return;
         this.state = newState;
     }
@@ -99,6 +99,7 @@ public class Lift implements IStateBasedModule, IRobotModule {
         if(state == State.RESETTING){
             if(Math.abs(encoder.getRawVelocity()) <= velocityThreshold){
                 groundPos = encoder.getCurrentPosition();
+                updateStateValues();
                 state = state.nextState;
             }
         }

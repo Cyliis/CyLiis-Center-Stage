@@ -19,7 +19,7 @@ public class RedRelocalizer {
 
     public static int correctID = 4;
 
-    public static double xOffset = 28, yOffset = -91;
+    public static double xOffset = 29.8, yOffset = -91.5;
 
     public double lastX, lastY;
     public double distance, globalAngle;
@@ -37,14 +37,20 @@ public class RedRelocalizer {
         return new Pose(xDistance + xOffset, yDistance + yOffset, localizer.getHeading());
     }
 
-    private long frameAcquisitionTime = 0;
+    public long frameAcquisitionTime = 0;
+    public boolean updated = false;
+
+    public boolean use = false;
 
     public void update(){
+        if(!use) return;
         for(AprilTagDetection tag: processor.getDetections()){
             if(tag.id == correctID){
                 if(frameAcquisitionTime != tag.frameAcquisitionNanoTime){
                     frameAcquisitionTime = tag.frameAcquisitionNanoTime;
+                    updated = true;
                     localizer.setPose(getPoseFromTag(tag));
+//                    Pose a = getPoseFromTag(tag);
                 }
             }
         }

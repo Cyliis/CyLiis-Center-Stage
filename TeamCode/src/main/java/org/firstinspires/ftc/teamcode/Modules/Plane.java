@@ -14,9 +14,9 @@ public class Plane implements IStateBasedModule, IRobotModule {
     public static boolean ENABLED = true;
 
     private final CoolServo servo;
-    public static boolean reversedServo = true;
+    public static boolean reversedServo = false;
 
-    public static double openPosition = 0.57, closedPosition = 0.69;
+    public static double openPosition = 0.7, closedPosition = 0.93;
 
     public enum State{
         OPEN(openPosition), CLOSED(closedPosition);
@@ -83,7 +83,14 @@ public class Plane implements IStateBasedModule, IRobotModule {
 
     @Override
     public void updateHardware() {
-        servo.setPosition(state.position);
+        switch (state)
+        {
+            case OPEN: servo.setPosition(openPosition);
+            break;
+            case CLOSED: servo.setPosition(closedPosition);
+            break;
+        }
+        //servo.setPosition(state.position);
 
         servo.update();
     }

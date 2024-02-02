@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
-import static java.lang.Math.PI;
-
 import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
@@ -12,22 +10,25 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.LogicNodes.Nodes.BetterBlueFarNodes;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.LogicNodes.Nodes.BlueFarNodes;
 import org.firstinspires.ftc.teamcode.Modules.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.Hardware;
 import org.firstinspires.ftc.teamcode.Robot.RobotModules;
+import org.firstinspires.ftc.teamcode.Vision.BlueRelocalizer;
 import org.firstinspires.ftc.teamcode.Vision.PropDetectionBlueFar;
-import org.firstinspires.ftc.teamcode.Wrappers.CoolIMU;
 import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 @Autonomous(name = "Better Blue Far 🐟")
-public class BetterBlueFar extends LinearOpMode {
+public class BlueFar extends LinearOpMode {
     Hardware hardware;
 
     MecanumDrive drive;
     RobotModules robot;
 
-    BetterBlueFarNodes nodes;
+    BlueFarNodes nodes;
 
     FtcDashboard dash;
 
@@ -70,7 +71,7 @@ public class BetterBlueFar extends LinearOpMode {
             telemetry.update();
         }
 
-        nodes = new BetterBlueFarNodes(drive, robot, detectionCase);
+        nodes = new BlueFarNodes(drive, robot, detectionCase);
         nodes.currentNode = nodes.start;
 
         portal.close();
@@ -90,10 +91,10 @@ public class BetterBlueFar extends LinearOpMode {
             telemetry.addData("Imu angle", drive.getLocalizer().getHeading());
             telemetry.addData("Hz", 1.0/loopTimer.seconds());
             telemetry.addData("Current node", nodes.currentNode);
-            telemetry.addData("Left sensor", hardware.leftSensor.isPixel());
+//            telemetry.addData("Left sensor", hardware.leftSensor.isPixel());
 //            telemetry.addData("Diff", ((drive.getTargetPose().getHeading() - ((hardware.localizer.getHeading()%(2.0*PI) - Math.signum(hardware.localizer.getHeading()) * PI * 2.0) % (2.0* PI)) )%(2.0*PI)));
-            telemetry.addData("Right sensor", hardware.rightSensor.isPixel());
-            telemetry.addData("Diff", drive.diff);
+//            telemetry.addData("Right sensor", hardware.rightSensor.isPixel());
+//            telemetry.addData("Diff", drive.diff);
             robot.telemetry(telemetry);
 
             loopTimer.reset();

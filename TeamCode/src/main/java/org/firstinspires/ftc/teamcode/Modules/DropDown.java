@@ -14,11 +14,11 @@ public class DropDown implements IStateBasedModule, IRobotModule {
     public static boolean ENABLED = true;
 
     private final CoolServo servo;
-    public static boolean reversedServo = false;
+    public static boolean reversedServo = true;
 
-    public static double intakePosition = 0.2, upPosition = 0.6;
+    public static double intakePosition = 0.2, upPosition = 1;
     public static int index = 0;
-    public static double pos0 = 0.18, pos1 = 0.23, pos2 = 0.26, pos3 = 0.29, pos4 = 0.33;
+    public static double pos0 = .58, pos1 = .61, pos2 = .64, pos3 = .67, pos4 = .7;
 
     public static double profileMaxVelocity = 20, profileAcceleration = 20;
 
@@ -93,6 +93,7 @@ public class DropDown implements IStateBasedModule, IRobotModule {
 
     @Override
     public void updateHardware() {
+
         servo.setPosition(state.position);
 
         servo.update();

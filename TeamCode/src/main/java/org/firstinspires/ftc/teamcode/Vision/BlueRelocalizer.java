@@ -19,26 +19,38 @@ public class BlueRelocalizer {
 
     public static int correctID = 3;
 
-    public static double xOffset = 28, yOffset = 91;
+    public static double xOffset = 33, yOffset = 92;
+
+    public double lastX, lastY;
+    public double distance, globalAngle;
 
     private Pose getPoseFromTag(AprilTagDetection tag){
-        double distance = Math.sqrt(tag.ftcPose.x * tag.ftcPose.x + tag.ftcPose.y * tag.ftcPose.y);
-        double globalAngle = tag.ftcPose.yaw + localizer.getHeading();
+        distance = Math.sqrt(tag.ftcPose.x * tag.ftcPose.x + tag.ftcPose.y * tag.ftcPose.y);
+        globalAngle = tag.ftcPose.yaw + localizer.getHeading();
 
         double xDistance = -distance * Math.cos(globalAngle);
         double yDistance = -distance * Math.sin(globalAngle);
 
+        lastX = xDistance + xOffset;
+        lastY = yDistance + yOffset;
+
         return new Pose(xDistance + xOffset, yDistance + yOffset, localizer.getHeading());
     }
 
-    private long frameAcquisitionTime = 0;
+    public long frameAcquisitionTime = 0;
+    public boolean updated = false;
+
+    public boolean use = false;
 
     public void update(){
+        if(!use) return;
         for(AprilTagDetection tag: processor.getDetections()){
             if(tag.id == correctID){
                 if(frameAcquisitionTime != tag.frameAcquisitionNanoTime){
                     frameAcquisitionTime = tag.frameAcquisitionNanoTime;
+                    updated = true;
                     localizer.setPose(getPoseFromTag(tag));
+//                    Pose a = getPoseFromTag(tag);
                 }
             }
         }
