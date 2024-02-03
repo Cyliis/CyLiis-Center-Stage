@@ -74,7 +74,7 @@ public class BlueFarNodes {
 
     private final Pose driftAfterLeft = new Pose(0,-1.5);
     private final Pose driftAfterMiddle = new Pose(-1, -1.5);
-    private final Pose driftAfterRight = new Pose(-1, -1.5);
+    private final Pose driftAfterRight = new Pose(-2, -1.5);
     private Pose driftAfterPurple = new Pose();
 
     public static double timeToScore = 0.85, timeToIntake = 1.3, timeToReverse = 0.85;
@@ -83,20 +83,20 @@ public class BlueFarNodes {
     private int intakeTries = 0;
 
     private final Pose purpleLeftPose = new Pose(27, 3, PI/2.0);
-    private final Pose purpleMiddlePose = new Pose(30.5, 1, 0.88);
-    private final Pose purpleRightPose = new Pose(20, -2.5, 0);
+    private final Pose purpleMiddlePose = new Pose(29.5, 0, 0.88);
+    private final Pose purpleRightPose = new Pose(20, -3.5, 0);
 
     private Pose purplePose = new Pose();
 
     private final Pose backUpPoseLeft = new Pose(27, 0, PI/2.0);
     private final Pose backUpPoseMiddle = new Pose(25,-2,0.88);
-    private final Pose backUpPoseRight = new Pose(10, 5, 0);
+    private final Pose backUpPoseRight = new Pose(10, 2, 0);
 
     private Pose backUpPose = new Pose();
 
     private final Pose lineUpForIntakePoseLeft = new Pose(51,-6,PI/2.0);
     private final Pose lineUpForIntakePoseMiddle = new Pose(51, -10, PI/2.0);
-    private final Pose lineUpForIntakePoseRight = new Pose(51, 4, PI/2.0);
+    private final Pose lineUpForIntakePoseRight = new Pose(51, 7.5, PI/2.0);
 
     private Pose lineUpForIntakePose = new Pose();
 
@@ -105,19 +105,19 @@ public class BlueFarNodes {
 //    private Pose intakePoseMiddle = new Pose(49,-20.5,1.56);
 //    private Pose intakePoseRight = new Pose(49,-20.5,1.56);
 
-    private Pose intakePose = new Pose(50.5,-18,PI/2.0);
+    private Pose intakePose = new Pose(50.5,-20,PI/2.0);
 
     private final Pose crossFieldPose = new Pose(52,69,PI/2.0);
 
-    private final Pose scoringPoseLeftYellow = new Pose(22.5,91.5,PI/2.0);
-    private final Pose scoringPoseMiddleYellow = new Pose(29,91.5,PI/2.0);
-    private final Pose scoringPoseRightYellow = new Pose(33,91.5,PI/2.0);
+    private final Pose scoringPoseLeftYellow = new Pose(22.5,91,PI/2.0);
+    private final Pose scoringPoseMiddleYellow = new Pose(30,91,PI/2.0);
+    private final Pose scoringPoseRightYellow = new Pose(34,91,PI/2.0);
 
     private Pose scoringPoseYellow = new Pose();
 
-    private final Pose scoringPoseLeft = new Pose(28,91.5,PI/2.0);
-    private final Pose scoringPoseMiddle = new Pose(32,91.5,PI/2.0);
-    private final Pose scoringPoseRight = new Pose(28,91.5,PI/2.0);
+    private final Pose scoringPoseLeft = new Pose(28,91,PI/2.0);
+    private final Pose scoringPoseMiddle = new Pose(32,91,PI/2.0);
+    private final Pose scoringPoseRight = new Pose(28,91,PI/2.0);
 
     private Pose scoringPose = new Pose();
 

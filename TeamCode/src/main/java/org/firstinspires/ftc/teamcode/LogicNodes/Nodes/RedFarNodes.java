@@ -83,7 +83,7 @@ public class RedFarNodes {
     private int intakeTries = 0;
 
     private final Pose purpleRightPose = new Pose(27, -3, -PI/2.0);
-    private final Pose purpleMiddlePose = new Pose(30, -1, -0.88);
+    private final Pose purpleMiddlePose = new Pose(29, -1, -0.88);
     private final Pose purpleLeftPose = new Pose(20, 2, 0);
 
     private Pose purplePose = new Pose();
@@ -105,19 +105,19 @@ public class RedFarNodes {
 //    private Pose intakePoseMiddle = new Pose(49,-20.5,1.56);
 //    private Pose intakePoseLeft = new Pose(49,-20.5,1.56);
 
-    private Pose intakePose = new Pose(50.5,21,-PI/2.0);
+    private Pose intakePose = new Pose(50.5,20.5,-PI/2.0);
 
     private final Pose crossFieldPose = new Pose(52,-69,-PI/2.0);
 
-    private final Pose scoringPoseRightYellow = new Pose(21,-91,-PI/2.0);
-    private final Pose scoringPoseMiddleYellow = new Pose(26,-91,-PI/2.0);
-    private final Pose scoringPoseLeftYellow = new Pose(30,-91,-PI/2.0);
+    private final Pose scoringPoseRightYellow = new Pose(21,-90,-PI/2.0);
+    private final Pose scoringPoseMiddleYellow = new Pose(26,-90,-PI/2.0);
+    private final Pose scoringPoseLeftYellow = new Pose(30.5,-90,-PI/2.0);
 
     private Pose scoringPoseYellow = new Pose();
 
-    private final Pose scoringPoseRight = new Pose(27,-91,-PI/2.0);
-    private final Pose scoringPoseMiddle = new Pose(30,-91,-PI/2.0);
-    private final Pose scoringPoseLeft = new Pose(26,-91,-PI/2.0);
+    private final Pose scoringPoseRight = new Pose(27,-90,-PI/2.0);
+    private final Pose scoringPoseMiddle = new Pose(30,-90,-PI/2.0);
+    private final Pose scoringPoseLeft = new Pose(26,-90,-PI/2.0);
 
     private Pose scoringPose = new Pose();
 

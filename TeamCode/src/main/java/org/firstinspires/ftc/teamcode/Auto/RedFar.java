@@ -63,6 +63,7 @@ public class RedFar extends LinearOpMode {
         while(opModeInInit() && !isStopRequested()){
 
             detectionCase = processor.detection;
+//            detectionCase = 1;
 
             robot.initUpdate();
             robot.telemetry(telemetry);
