@@ -62,6 +62,10 @@ public class RedFarNodes {
 
     private final LogicNode end = new LogicNode("End");
 
+    private final LogicNode wait = new LogicNode("Sync wait");
+
+    public static double waitTime = 1.0;
+
     private final ElapsedTime timer = new ElapsedTime();
 
     private int cycles = 0;
@@ -162,18 +166,12 @@ public class RedFarNodes {
     }
 
     private void initNodes(MecanumDrive drive, RobotModules robot){
-        start.addCondition(()->detectionCase == 1, ()->{
+        start.addCondition(()->true, ()->{
             autoTimer.reset();
-            drive.setTargetPose(purplePose);
             timer.reset();
-        }, placePurple);
-        start.addCondition(()->detectionCase == 2, ()->{
-            autoTimer.reset();
-            drive.setTargetPose(purplePose);
-            timer.reset();
-        }, placePurple);
-        start.addCondition(()->detectionCase == 3, ()->{
-            autoTimer.reset();
+        }, wait);
+
+        wait.addCondition(()->timer.seconds() >= waitTime, ()->{
             drive.setTargetPose(purplePose);
             timer.reset();
         }, placePurple);
