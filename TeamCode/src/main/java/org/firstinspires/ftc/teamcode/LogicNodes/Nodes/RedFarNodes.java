@@ -255,7 +255,7 @@ public class RedFarNodes {
         crossField.addCondition(()->drive.reachedTarget(10), ()->{
             robot.intake.setState(Intake.State.IDLE);
             drive.setTargetPose(cycles == 0?scoringPoseYellow.plus(offset):scoringPose.plus(offset));
-            if(cycles == 0) Lift.level = 0;
+            if(cycles == 0) Lift.level = 1;
             else Lift.level = 3;
             if(robot.leftSensor.isPixelUpdate())DropDown.index = Math.max(DropDown.index - 1, 0);
             if(robot.rightSensor.isPixelUpdate())DropDown.index = Math.max(DropDown.index - 1, 0);
